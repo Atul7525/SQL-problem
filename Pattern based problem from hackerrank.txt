@@ -1,0 +1,18 @@
+P(R) represents a pattern drawn by Julia in R rows. The following pattern represents P(5):
+solution 1:
+with cte as (
+select 1 as id
+union all
+select id+1 from cte where id<20
+)
+select REPLICATE('*   ',id) as half_pyramid from cte
+
+solution 2:
+DECLARE @COUNTER INT
+SET @COUNTER = 1
+
+WHILE (@COUNTER < 21)
+BEGIN
+	PRINT REPLICATE('* ', @COUNTER)
+	SET @COUNTER = @COUNTER+1
+END
